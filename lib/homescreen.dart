@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:shopping_app/productdetailscreen.dart';
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,7 +25,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     child: const Icon(Icons.settings, color: Colors.white),
                   ),
-                  Column(
+                  const Column(
                     children: const [
                       Text('Delivery address',
                           style: TextStyle(color: Colors.grey, fontSize: 12)),
@@ -70,11 +68,12 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Categories Section
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text('Categories',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   Text('See all', style: TextStyle(color: Colors.grey)),
                 ],
               ),
@@ -95,7 +94,7 @@ class HomeScreen extends StatelessWidget {
               ),
 
               // Flash Sale Section
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
@@ -110,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold)),
                     ],
                   ),
-                  const Text('See all', style: TextStyle(color: Colors.grey)),
+                  Text('See all', style: TextStyle(color: Colors.grey)),
                 ],
               ),
               const SizedBox(height: 16),
@@ -125,7 +124,8 @@ class HomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProductDetailScreen()),
+                              builder: (context) =>
+                                  const ProductDetailScreen()),
                         );
                       },
                       child: _buildFlashSaleItem(
@@ -153,8 +153,7 @@ class HomeScreen extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.category), label: 'Catalog'),
+          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Catalog'),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart), label: 'Cart'),
           BottomNavigationBarItem(

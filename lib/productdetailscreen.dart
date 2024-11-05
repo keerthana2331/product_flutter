@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shopping_app/cartscreen.dart';
+
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key}) : super(key: key);
 
@@ -59,7 +60,7 @@ class ProductDetailScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
-                  Row(
+                  const Row(
                     children: const [
                       Icon(Icons.star, color: Colors.green, size: 16),
                       Text(' 4.8'),
@@ -71,8 +72,8 @@ class ProductDetailScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    children: const [
+                  const Row(
+                    children: [
                       Text(
                         '£169.00',
                         style: TextStyle(

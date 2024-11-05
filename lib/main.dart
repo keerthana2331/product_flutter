@@ -1,9 +1,6 @@
 // main.dart
 import 'package:flutter/material.dart';
 import 'package:shopping_app/cartscreen.dart';
-import 'package:shopping_app/productdetailscreen.dart';
-import 'homescreen.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -24,9 +21,10 @@ class MyApp extends StatelessWidget {
         // Set the background color of the scaffold
         scaffoldBackgroundColor: Colors.white,
         // Optional: Set a secondary color
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.orange),
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: Colors.orange),
       ),
-            debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
 
       // Set the home screen of the app
       home: const CartScreen(),

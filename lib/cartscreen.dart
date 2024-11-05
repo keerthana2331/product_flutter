@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shopping_app/productdetailscreen.dart';
 
@@ -14,9 +13,9 @@ class CartScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Cart',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -31,21 +30,21 @@ class CartScreen extends StatelessWidget {
                   border: Border.all(color: Colors.grey[300]!),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Text('92 High Street, London'),
                     Icon(Icons.chevron_right),
                   ],
                 ),
               ),
               const SizedBox(height: 16),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Select all'),
+                  Text('Select all'),
                   Row(
-                    children: const [
+                    children: [
                       Icon(Icons.share),
                       SizedBox(width: 16),
                       Icon(Icons.delete),
@@ -68,7 +67,7 @@ class CartScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Checkout'),
                 style: ElevatedButton.styleFrom(
-                   iconColor: Colors.lime,
+                  iconColor: Colors.lime,
                   minimumSize: const Size(double.infinity, 48),
                 ),
               ),
@@ -80,8 +79,7 @@ class CartScreen extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.category), label: 'Catalog'),
+          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Catalog'),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart), label: 'Cart'),
           BottomNavigationBarItem(
