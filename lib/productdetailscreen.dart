@@ -1,7 +1,6 @@
-// product_detail_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:shopping_app/cartscreen.dart';
+import 'package:shopping_app/homescreen.dart'; // Import HomeScreen
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key}) : super(key: key);
@@ -20,17 +19,23 @@ class ProductDetailScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.arrow_back),
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () {
+                      // Navigate back to HomeScreen
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HomeScreen()),
+                      );
+                    },
                   ),
                   Row(
                     children: [
                       IconButton(
                         icon: const Icon(Icons.favorite_border),
-                        onPressed: () {},
+                        onPressed: () {}, // Handle favorite action
                       ),
                       IconButton(
                         icon: const Icon(Icons.share),
-                        onPressed: () {},
+                        onPressed: () {}, // Handle share action
                       ),
                     ],
                   ),
@@ -61,7 +66,7 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   const Row(
-                    children: const [
+                    children: [
                       Icon(Icons.star, color: Colors.green, size: 16),
                       Text(' 4.8'),
                       Text(' (117 reviews)'),
@@ -76,8 +81,7 @@ class ProductDetailScreen extends StatelessWidget {
                     children: [
                       Text(
                         '£169.00',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(width: 8),
                       Text('from £14 per month',
@@ -92,10 +96,10 @@ class ProductDetailScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {
+                      // Navigate to CartScreen when the item is added to the cart
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const CartScreen()),
+                        MaterialPageRoute(builder: (context) => const CartScreen()),
                       );
                     },
                     child: const Text('Add to cart'),

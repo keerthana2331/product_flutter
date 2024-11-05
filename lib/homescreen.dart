@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/productdetailscreen.dart';
+import 'package:shopping_app/cartscreen.dart'; // Import CartScreen
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
                     child: const Icon(Icons.settings, color: Colors.white),
                   ),
                   const Column(
-                    children: const [
+                    children: [
                       Text('Delivery address',
                           style: TextStyle(color: Colors.grey, fontSize: 12)),
                       Text('92 High Street, London',
@@ -98,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Text('Flash Sale',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)),
@@ -162,6 +163,29 @@ class HomeScreen extends StatelessWidget {
         ],
         currentIndex: 0,
         selectedItemColor: Colors.lime,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              // Home is already here, do nothing or navigate to Home if needed
+              break;
+            case 1:
+              // Navigate to Catalog screen if you have one
+              break;
+            case 2:
+              // Navigate to CartScreen
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CartScreen()),
+              );
+              break;
+            case 3:
+              // Navigate to Favorites screen if you have one
+              break;
+            case 4:
+              // Navigate to Profile screen if you have one
+              break;
+          }
+        },
       ),
     );
   }

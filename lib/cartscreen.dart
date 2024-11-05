@@ -54,11 +54,13 @@ class CartScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _buildCartItem(
+                context,
                 'Nintendo Switch Lite, Yellow',
                 '£109.00',
               ),
               const SizedBox(height: 16),
               _buildCartItem(
+                context,
                 'The Legend of Zelda: Tears of the Kingdom',
                 '£39.00',
               ),
@@ -92,50 +94,55 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCartItem(String title, String price) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Checkbox(value: true, onChanged: (value) {}),
-          Container(
-            width: 60,
-            height: 60,
-            color: Colors.grey[200],
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _buildCartItem(BuildContext context, String title, String price) {
+    return GestureDetector(
+      onTap: () {
+        NavigationService.navigateToProductDetail(context);
+      },
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey[300]!),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            Checkbox(value: true, onChanged: (value) {}),
+            Container(
+              width: 60,
+              height: 60,
+              color: Colors.grey[200],
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title),
+                  const SizedBox(height: 4),
+                  Text(price,
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                ],
+              ),
+            ),
+            Row(
               children: [
-                Text(title),
-                const SizedBox(height: 4),
-                Text(price,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                IconButton(
+                  icon: const Icon(Icons.remove),
+                  onPressed: () {},
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: const Text('1'),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: () {},
+                ),
               ],
             ),
-          ),
-          Row(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.remove),
-                onPressed: () {},
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: const Text('1'),
-              ),
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -151,7 +158,7 @@ class NavigationService {
   }
 
   static void navigateToCart(BuildContext context) {
-    Navigator.push(
+    Navigator.pop(
       context,
       MaterialPageRoute(builder: (context) => const CartScreen()),
     );
