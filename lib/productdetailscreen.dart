@@ -48,8 +48,9 @@ class ProductDetailScreen extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 color: Colors.grey[100],
-                child: const Center(
-                  child: Text('Nintendo Switch Image'),
+                child: Image.asset(
+                  'assets/switch.png', // Path to the image asset
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -65,7 +66,7 @@ class ProductDetailScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
-                  const Row(
+                const   Row(
                     children: [
                       Icon(Icons.star, color: Colors.green, size: 16),
                       Text(' 4.8'),
@@ -73,12 +74,14 @@ class ProductDetailScreen extends StatelessWidget {
                       SizedBox(width: 16),
                       Text('94%'),
                       SizedBox(width: 16),
+                      Icon(Icons.question_answer_outlined, size: 16),
+                      SizedBox(width: 4),
                       Text('8'),
                     ],
                   ),
                   const SizedBox(height: 16),
-                  const Row(
-                    children: [
+              const     Row(
+                    children:  [
                       Text(
                         '£169.00',
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -104,7 +107,7 @@ class ProductDetailScreen extends StatelessWidget {
                     },
                     child: const Text('Add to cart'),
                     style: ElevatedButton.styleFrom(
-                      iconColor: Colors.lime,
+                      backgroundColor: Colors.lime,
                       minimumSize: const Size(double.infinity, 48),
                     ),
                   ),

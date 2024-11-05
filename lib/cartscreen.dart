@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/productdetailscreen.dart';
+import 'package:shopping_app/homescreen.dart'; // Import HomeScreen
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -27,14 +28,23 @@ class CartScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey[300]!),
+                  color: Colors.grey[100],
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('92 High Street, London'),
-                    Icon(Icons.chevron_right),
+                    Row(
+                      children: [
+                        Icon(Icons.location_on, color: Colors.grey),
+                        SizedBox(width: 8),
+                        Text(
+                          '92 High Street, London',
+                          style: TextStyle(color: Colors.black54),
+                        ),
+                      ],
+                    ),
+                    Icon(Icons.chevron_right, color: Colors.grey),
                   ],
                 ),
               ),
@@ -42,12 +52,17 @@ class CartScreen extends StatelessWidget {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Select all'),
                   Row(
                     children: [
-                      Icon(Icons.share),
+                      Checkbox(value: true, onChanged: null),
+                      Text('Select all', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.share, color: Colors.grey),
                       SizedBox(width: 16),
-                      Icon(Icons.delete),
+                      Icon(Icons.delete, color: Colors.grey),
                     ],
                   ),
                 ],
@@ -57,20 +72,28 @@ class CartScreen extends StatelessWidget {
                 context,
                 'Nintendo Switch Lite, Yellow',
                 '£109.00',
+                'assets/switch_lite.png',
               ),
               const SizedBox(height: 16),
               _buildCartItem(
                 context,
                 'The Legend of Zelda: Tears of the Kingdom',
                 '£39.00',
+                'assets/zelda.png',
               ),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {},
-                child: const Text('Checkout'),
                 style: ElevatedButton.styleFrom(
-                  iconColor: Colors.lime,
+                  backgroundColor: Colors.lime,
                   minimumSize: const Size(double.infinity, 48),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Text(
+                  'Checkout',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -90,11 +113,38 @@ class CartScreen extends StatelessWidget {
         ],
         currentIndex: 2,
         selectedItemColor: Colors.lime,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+              );
+              break;
+            case 1:
+              // Navigate to CatalogScreen if available
+              break;
+            case 2:
+              // Do nothing as we are already on the CartScreen
+              break;
+            case 3:
+              // Navigate to FavoritesScreen if available
+              break;
+            case 4:
+              // Navigate to ProfileScreen if available
+              break;
+          }
+        },
       ),
     );
   }
 
-  Widget _buildCartItem(BuildContext context, String title, String price) {
+  Widget _buildCartItem(
+    BuildContext context,
+    String title,
+    String price,
+    String imagePath,
+  ) {
     return GestureDetector(
       onTap: () {
         NavigationService.navigateToProductDetail(context);
@@ -102,8 +152,15 @@ class CartScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey[300]!),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              blurRadius: 6,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Row(
           children: [
@@ -111,32 +168,44 @@ class CartScreen extends StatelessWidget {
             Container(
               width: 60,
               height: 60,
-              color: Colors.grey[200],
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title),
+                  Text(
+                    title,
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
                   const SizedBox(height: 4),
-                  Text(price,
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                    price,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black87),
+                  ),
                 ],
               ),
             ),
             Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.remove),
+                  icon: const Icon(Icons.remove, color: Colors.grey),
                   onPressed: () {},
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: const Text('1'),
+                  child: const Text('1', style: TextStyle(fontSize: 16)),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.add),
+                  icon: const Icon(Icons.add, color: Colors.grey),
                   onPressed: () {},
                 ),
               ],

@@ -56,15 +56,25 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              // Delivery Banner
+              // Delivery Banner with Feather Logo
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: Colors.blue[50],
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Text('Delivery is 50% cheaper',
-                    style: TextStyle(color: Colors.blue)),
+                child: Row(
+                  children: [
+                    const Text('Delivery is 50% cheaper',
+                        style: TextStyle(color: Colors.blue)),
+                    const Spacer(),
+                    Image.asset(
+                      'assets/first scre product.topfeather.png', // Feather logo asset
+                      width: 24,
+                      height: 24,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 16),
 
@@ -80,19 +90,21 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              // Category Icons
-              SizedBox(
-                height: 100,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    _buildCategoryItem('Phones', Icons.phone_android),
-                    _buildCategoryItem('Consoles', Icons.games),
-                    _buildCategoryItem('Laptops', Icons.laptop),
-                    _buildCategoryItem('Cameras', Icons.camera_alt),
-                  ],
-                ),
-              ),
+              // Category Icons with Image Assets
+SizedBox(
+  height: 100,
+  child: ListView(
+    scrollDirection: Axis.horizontal,
+    children: [
+      _buildCategoryItem('Phones', 'assets/icon.phone.png'),
+      _buildCategoryItem('Consoles', 'assets/console.png'),
+      _buildCategoryItem('Laptops', 'assets/laptop.png'),
+      _buildCategoryItem('Cameras', 'assets/camera.png'),
+      _buildCategoryItem('Audio', 'assets/audio.png'), // Ensure 'audio.png' exists in 'assets' folder
+    ],
+  ),
+),
+              const SizedBox(height: 16),
 
               // Flash Sale Section
               const Row(
@@ -121,7 +133,6 @@ class HomeScreen extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        // Navigate to product detail
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -133,6 +144,7 @@ class HomeScreen extends StatelessWidget {
                         'Apple iPhone 15 Pro',
                         '£699.00',
                         '£739.00',
+                        'assets/iphone.png', // Add image asset
                       ),
                     ),
                   ),
@@ -142,6 +154,7 @@ class HomeScreen extends StatelessWidget {
                       'Samsung Galaxy Buds Pro',
                       '£69.00',
                       '£85.00',
+                      'assets/galaxy_buds.png', // Add image asset
                     ),
                   ),
                 ],
@@ -166,23 +179,18 @@ class HomeScreen extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              // Home is already here, do nothing or navigate to Home if needed
               break;
             case 1:
-              // Navigate to Catalog screen if you have one
               break;
             case 2:
-              // Navigate to CartScreen
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const CartScreen()),
               );
               break;
             case 3:
-              // Navigate to Favorites screen if you have one
               break;
             case 4:
-              // Navigate to Profile screen if you have one
               break;
           }
         },
@@ -190,19 +198,23 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryItem(String title, IconData icon) {
+  Widget _buildCategoryItem(String title, String imagePath) {
     return Container(
       width: 80,
       margin: const EdgeInsets.only(right: 16),
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: Colors.grey[200],
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon),
+            child: Image.asset(
+              imagePath,
+              width: 32,
+              height: 32,
+            ),
           ),
           const SizedBox(height: 8),
           Text(title, style: const TextStyle(fontSize: 12)),
@@ -211,7 +223,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFlashSaleItem(String title, String price, String originalPrice) {
+  Widget _buildFlashSaleItem(
+      String title, String price, String originalPrice, String imagePath) {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -229,6 +242,10 @@ class HomeScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                    image: AssetImage(imagePath),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               IconButton(
