@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/cartscreen.dart';
-import 'package:shopping_app/homescreen.dart'; // Import HomeScreen
+import 'package:shopping_app/homescreen.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key}) : super(key: key);
@@ -29,13 +29,28 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      IconButton(
-                        icon: const Icon(Icons.favorite_border),
-                        onPressed: () {}, // Handle favorite action
+                      // Heart icon with red color and white background
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.favorite, color: Colors.red),
+                          onPressed: () {}, // Handle favorite action
+                        ),
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.share),
-                        onPressed: () {}, // Handle share action
+                      const SizedBox(width: 8),
+                      // Upload icon with white background
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.upload, color: Colors.black),
+                          onPressed: () {}, // Handle share action
+                        ),
                       ),
                     ],
                   ),
@@ -43,15 +58,36 @@ class ProductDetailScreen extends StatelessWidget {
               ),
             ),
 
-            // Product Image
+            // Full-width Product Image with Dots
             Expanded(
-              child: Container(
-                width: double.infinity,
-                color: Colors.grey[100],
-                child: Image.asset(
-                  'assets/switch.png', // Path to the image asset
-                  fit: BoxFit.cover,
-                ),
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    child: Image.asset(
+                      'assets/switch.png', // Path to the image asset
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(4, (index) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: index == 0 ? Colors.black : Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ],
               ),
             ),
 
@@ -66,29 +102,66 @@ class ProductDetailScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
-                const   Row(
+                  Row(
                     children: [
-                      Icon(Icons.star, color: Colors.green, size: 16),
-                      Text(' 4.8'),
-                      Text(' (117 reviews)'),
-                      SizedBox(width: 16),
-                      Text('94%'),
-                      SizedBox(width: 16),
-                      Icon(Icons.question_answer_outlined, size: 16),
-                      SizedBox(width: 4),
-                      Text('8'),
+                      // Box for rating
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Row(
+                          children: const [
+                            Icon(Icons.star, color: Colors.blue, size: 16),
+                            Text(' 4.8'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      // Box for thumbs-up percentage
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Row(
+                          children: const [
+                            Icon(Icons.thumb_up, color: Colors.green, size: 16),
+                            Text(' 94%'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      // Message icon for "8"
+                      Row(
+                        children: const [
+                          Icon(Icons.message, size: 16),
+                          SizedBox(width: 4),
+                          Text('8'),
+                        ],
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-              const     Row(
-                    children:  [
-                      Text(
+                ],
+              ),
+            ),
+
+            // Price and Description
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                 const Row(
+                    children: [
+                     Text(
                         '£169.00',
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(width: 8),
-                      Text('from £14 per month',
-                          style: TextStyle(color: Colors.grey)),
+                     SizedBox(width: 8),
+                       Icon(Icons.info, color: Colors.grey, size: 16), // Info icon for additional info
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -107,14 +180,17 @@ class ProductDetailScreen extends StatelessWidget {
                     },
                     child: const Text('Add to cart'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lime,
+                      backgroundColor: const Color.fromARGB(255, 200, 241, 13),
                       minimumSize: const Size(double.infinity, 48),
                     ),
                   ),
                   const SizedBox(height: 8),
                   const Center(
-                      child: Text('Delivery on 26 October',
-                          style: TextStyle(color: Colors.grey))),
+                    child: Text(
+                      'Delivery on 26 October',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
                 ],
               ),
             ),
