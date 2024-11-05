@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/productdetailscreen.dart';
-import 'package:shopping_app/homescreen.dart'; // Import HomeScreen
+import 'package:shopping_app/homescreen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -68,14 +68,14 @@ class CartScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-              _buildCartItem(
+              buildCartItem(
                 context,
                 'Nintendo Switch Lite, Yellow',
                 '£109.00',
                 'assets/switch_lite.png',
               ),
               const SizedBox(height: 16),
-              _buildCartItem(
+              buildCartItem(
                 context,
                 'The Legend of Zelda: Tears of the Kingdom',
                 '£39.00',
@@ -122,16 +122,12 @@ class CartScreen extends StatelessWidget {
               );
               break;
             case 1:
-              // Navigate to CatalogScreen if available
               break;
             case 2:
-              // Do nothing as we are already on the CartScreen
               break;
             case 3:
-              // Navigate to FavoritesScreen if available
               break;
             case 4:
-              // Navigate to ProfileScreen if available
               break;
           }
         },
@@ -139,7 +135,7 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCartItem(
+  Widget buildCartItem(
     BuildContext context,
     String title,
     String price,
@@ -183,7 +179,8 @@ class CartScreen extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -217,7 +214,6 @@ class CartScreen extends StatelessWidget {
   }
 }
 
-// Navigation service (optional, for better navigation management)
 class NavigationService {
   static void navigateToProductDetail(BuildContext context) {
     Navigator.push(

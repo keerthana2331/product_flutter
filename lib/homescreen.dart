@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/productdetailscreen.dart';
-import 'package:shopping_app/cartscreen.dart'; // Import CartScreen
+import 'package:shopping_app/cartscreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Top Bar
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -38,8 +37,6 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-
-              // Search Bar
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
@@ -55,8 +52,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-
-              // Delivery Banner with Feather Logo
               Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
@@ -69,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.blue)),
                     const Spacer(),
                     Image.asset(
-                      'assets/first scre product.topfeather.png', // Feather logo asset
+                      'assets/first scre product.topfeather.png',
                       width: 24,
                       height: 24,
                     ),
@@ -77,8 +72,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-
-              // Categories Section
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -89,24 +82,20 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16),
-
-              // Category Icons with Image Assets
-SizedBox(
-  height: 100,
-  child: ListView(
-    scrollDirection: Axis.horizontal,
-    children: [
-      _buildCategoryItem('Phones', 'assets/icon.phone.png'),
-      _buildCategoryItem('Consoles', 'assets/console.png'),
-      _buildCategoryItem('Laptops', 'assets/laptop.png'),
-      _buildCategoryItem('Cameras', 'assets/camera.png'),
-      _buildCategoryItem('Audio', 'assets/audio.png'), // Ensure 'audio.png' exists in 'assets' folder
-    ],
-  ),
-),
+              SizedBox(
+                height: 100,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    buildCategoryItem('Phones', 'assets/icon.phone.png'),
+                    buildCategoryItem('Consoles', 'assets/console.png'),
+                    buildCategoryItem('Laptops', 'assets/laptop.png'),
+                    buildCategoryItem('Cameras', 'assets/camera.png'),
+                    buildCategoryItem('Audio', 'assets/audio.png'),
+                  ],
+                ),
+              ),
               const SizedBox(height: 16),
-
-              // Flash Sale Section
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -126,8 +115,6 @@ SizedBox(
                 ],
               ),
               const SizedBox(height: 16),
-
-              // Flash Sale Items
               Row(
                 children: [
                   Expanded(
@@ -140,17 +127,17 @@ SizedBox(
                                   const ProductDetailScreen()),
                         );
                       },
-                      child: _buildFlashSaleItem(
+                      child: buildFlashSaleItem(
                         'Apple iPhone 15 Pro',
                         '£699.00',
                         '£739.00',
-                        'assets/iphone.png', // Add image asset
+                        'assets/iphone.png',
                       ),
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
-                    child: _buildFlashSaleItem(
+                    child: buildFlashSaleItem(
                       'Samsung Galaxy Buds Pro',
                       '£69.00',
                       '£85.00',
@@ -198,7 +185,7 @@ SizedBox(
     );
   }
 
-  Widget _buildCategoryItem(String title, String imagePath) {
+  Widget buildCategoryItem(String title, String imagePath) {
     return Container(
       width: 80,
       margin: const EdgeInsets.only(right: 16),
@@ -223,7 +210,7 @@ SizedBox(
     );
   }
 
-  Widget _buildFlashSaleItem(
+  Widget buildFlashSaleItem(
       String title, String price, String originalPrice, String imagePath) {
     return Container(
       padding: const EdgeInsets.all(8),
