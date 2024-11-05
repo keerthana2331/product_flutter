@@ -1,153 +1,139 @@
+
 import 'package:flutter/material.dart';
+import 'package:shopping_app/productdetailscreen.dart';
 
 class CartScreen extends StatelessWidget {
-  final List<CartItem> items = [
-    CartItem(
-      title: 'Nintendo Switch Lite, Yellow',
-      price: 109.00,
-      image: 'assets/switch_lite.png',
-      quantity: 1,
-    ),
-    CartItem(
-      title: 'The Legend of Zelda: Tears of the Kingdom (Nintendo Switch)',
-      price: 39.00,
-      image: 'assets/zelda.png',
-      quantity: 1,
-    ),
-  ];
-
-  CartScreen({Key? key}) : super(key: key);
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text(
-          'Cart',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_horiz, color: Colors.black),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          // Address bar
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.location_on_outlined),
-                  const SizedBox(width: 8),
-                  const Text('92 High Street, London'),
-                  const Spacer(),
-                  const Icon(Icons.chevron_right),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Cart',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  Icon(Icons.more_horiz),
                 ],
               ),
-            ),
-          ),
-
-          // Select all row
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.teal[100],
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: const EdgeInsets.all(4),
-                  child: const Icon(Icons.check, color: Colors.teal),
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[300]!),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                const SizedBox(width: 12),
-                const Text('Select all'),
-                const Spacer(),
-                const Icon(Icons.share),
-                const SizedBox(width: 12),
-                const Icon(Icons.edit),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text('92 High Street, London'),
+                    Icon(Icons.chevron_right),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Select all'),
+                  Row(
+                    children: const [
+                      Icon(Icons.share),
+                      SizedBox(width: 16),
+                      Icon(Icons.delete),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              _buildCartItem(
+                'Nintendo Switch Lite, Yellow',
+                '£109.00',
+              ),
+              const SizedBox(height: 16),
+              _buildCartItem(
+                'The Legend of Zelda: Tears of the Kingdom',
+                '£39.00',
+              ),
+              const Spacer(),
+              ElevatedButton(
+                onPressed: () {},
+                child: const Text('Checkout'),
+                style: ElevatedButton.styleFrom(
+                   iconColor: Colors.lime,
+                  minimumSize: const Size(double.infinity, 48),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.category), label: 'Catalog'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: 'Cart'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border), label: 'Favorites'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        currentIndex: 2,
+        selectedItemColor: Colors.lime,
+      ),
+    );
+  }
+
+  Widget _buildCartItem(String title, String price) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey[300]!),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Checkbox(value: true, onChanged: (value) {}),
+          Container(
+            width: 60,
+            height: 60,
+            color: Colors.grey[200],
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title),
+                const SizedBox(height: 4),
+                Text(price,
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
           ),
-
-          // Cart items
-          Expanded(
-            child: ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return CartItemWidget(item: items[index]);
-              },
-            ),
-          ),
-
-          // Checkout button
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFCCE64C),
-                minimumSize: const Size(double.infinity, 56),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+          Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.remove),
+                onPressed: () {},
               ),
-              child: const Text(
-                'Checkout',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: const Text('1'),
               ),
-            ),
-          ),
-
-          // Bottom navigation bar
-          BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.grey,
-            currentIndex: 2,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Catalog',
-              ),
-              BottomNavigationBarItem(
-                icon: Badge(
-                  label: Text('2'),
-                  child: Icon(Icons.shopping_cart_outlined),
-                ),
-                label: 'Cart',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border),
-                label: 'Favorites',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline),
-                label: 'Profile',
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () {},
               ),
             ],
           ),
@@ -157,111 +143,19 @@ class CartScreen extends StatelessWidget {
   }
 }
 
-class CartItem {
-  final String title;
-  final double price;
-  final String image;
-  int quantity;
+// Navigation service (optional, for better navigation management)
+class NavigationService {
+  static void navigateToProductDetail(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ProductDetailScreen()),
+    );
+  }
 
-  CartItem({
-    required this.title,
-    required this.price,
-    required this.image,
-    required this.quantity,
-  });
-}
-
-class CartItemWidget extends StatelessWidget {
-  final CartItem item;
-
-  const CartItemWidget({
-    Key? key,
-    required this.item,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.teal[100],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            padding: const EdgeInsets.all(4),
-            child: const Icon(Icons.check, color: Colors.teal),
-          ),
-          const SizedBox(width: 12),
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Image.asset(
-              item.image,
-              fit: BoxFit.contain,
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  item.title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  '£${item.price.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.remove),
-                            onPressed: () {},
-                          ),
-                          Text(
-                            item.quantity.toString(),
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+  static void navigateToCart(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const CartScreen()),
     );
   }
 }
