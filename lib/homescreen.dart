@@ -1,5 +1,6 @@
+
+
 import 'package:flutter/material.dart';
-import 'productdetailscreen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,29 +8,26 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Centered Top Bar with Bell and Settings Icons
+              // Top Bar
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 40,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFE2FF3F),
-                      shape: BoxShape.circle,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFE5FF00),
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Icon(Icons.settings, color: Colors.black),
+                    child: const Icon(Icons.workspace_premium, color: Colors.black),
                   ),
-                  const SizedBox(width: 8),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
                         'Delivery address',
@@ -42,155 +40,164 @@ class HomeScreen extends StatelessWidget {
                         '92 High Street, London',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                          fontSize: 16,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(width: 8),
-                  const Icon(Icons.notifications_outlined),
+                  Stack(
+                    children: [
+                      const Icon(Icons.notifications_outlined),
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        child: Container(
+                          width: 8,
+                          height: 8,
+                          decoration: const BoxDecoration(
+                            color: Colors.green,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
-              const SizedBox(height: 16),
-
-              // Centered Search Bar
+              const SizedBox(height: 20),
+              
+              // Search Bar
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
+                    icon: Icon(Icons.search),
                     hintText: 'Search the entire shop',
                     hintStyle: TextStyle(color: Colors.grey),
-                    icon: Icon(Icons.search, color: Colors.grey),
                   ),
                 ),
               ),
               const SizedBox(height: 16),
-
+              
               // Delivery Banner
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 decoration: BoxDecoration(
-                  color: Colors.blue[50],
-                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.green[50],
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Delivery is ',
                       style: TextStyle(fontSize: 16),
                     ),
-                    Text(
-                      '50% ',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: const Text(
+                        '50%',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Text(
-                      'cheaper',
+                    const Text(
+                      ' cheaper',
                       style: TextStyle(fontSize: 16),
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 24),
-
-              // Categories Section with Arrow
+              
+              // Categories
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
+                children: const [
+                  Text(
                     'Categories',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.arrow_forward, color: Colors.blue),
-                    onPressed: () {},
+                  Text(
+                    'See all',
+                    style: TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-
-              // Category Icons with Different Names
+              
+              // Category Icons
               SizedBox(
-                height: 80,
+                height: 90,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    _buildCategoryItem(Icons.phone_android, 'Phones'),
-                    _buildCategoryItem(Icons.sports_esports, 'Consoles'),
-                    _buildCategoryItem(Icons.computer, 'Laptops'),
-                    _buildCategoryItem(Icons.camera, 'Cameras'),
-                    _buildCategoryItem(Icons.headphones, 'Audio'),
+                    _buildCategoryItem('Phones', Icons.phone_iphone),
+                    _buildCategoryItem('Consoles', Icons.gamepad),
+                    _buildCategoryItem('Laptops', Icons.laptop),
+                    _buildCategoryItem('Cameras', Icons.camera_alt),
+                    _buildCategoryItem('Audio', Icons.headphones),
                   ],
                 ),
               ),
               const SizedBox(height: 24),
-
-              // Flash Sale Section
+              
+              // Flash Sale
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
-                      const Text(
+                    children: const [
+                      Text(
                         'Flash Sale',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFE2FF3F),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: const Text(
-                          '02:59:23',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                      SizedBox(width: 8),
+                      _TimerBox(),
                     ],
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'See all',
-                      style: TextStyle(color: Colors.blue),
-                    ),
+                  const Text(
+                    'See all',
+                    style: TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
               const SizedBox(height: 16),
-
-              // Product Section (Clickable)
+              
+              // Products Grid
               Expanded(
-                child: ListView(
-                  children: [
-                    _buildProductItem(
-                      context,
-                      'Apple iPhone 15 Pro 128GB',
-                      '£699.00',
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  childAspectRatio: 0.75,
+                  children: const [
+                    _ProductCard(
+                      image: 'assets/iphone.png',
+                      title: 'Apple iPhone 15 Pro',
+                      subtitle: '128GB Natural Titanium',
+                      price: '£699.00',
+                      originalPrice: '£739.00',
                     ),
-                    _buildProductItem(
-                      context,
-                      'Samsung Galaxy Buds Pro',
-                      '£69.00',
+                    _ProductCard(
+                      image: 'assets/galaxy_buds.png',
+                      title: 'Samsung Galaxy Buds Pro',
+                      subtitle: 'True Wireless Black',
+                      price: '£69.00',
+                      originalPrice: '£85.00',
                     ),
                   ],
                 ),
@@ -199,39 +206,13 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Catalog',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart (2)', // Updated cart icon label with quantity
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            label: 'Favorites',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const _BottomNavigationBarWidget(),
     );
   }
 
-  // Helper method for building category items
-  Widget _buildCategoryItem(IconData icon, String label) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 16),
+  Widget _buildCategoryItem(String title, IconData icon) {
+    return Container(
+      margin: const EdgeInsets.only(right: 16),
       child: Column(
         children: [
           Container(
@@ -241,68 +222,184 @@ class HomeScreen extends StatelessWidget {
               color: Colors.grey[200],
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              icon,
-              size: 30,
-              color: Colors.black,
-            ),
+            child: Icon(icon, size: 30),
           ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: const TextStyle(fontSize: 12),
-          ),
+          const SizedBox(height: 8),
+          Text(title, style: const TextStyle(fontSize: 12)),
         ],
       ),
     );
   }
+}
 
-  // Helper method for building product items
-  Widget _buildProductItem(BuildContext context, String title, String price) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ProductDetailScreen(),
+class _TimerBox extends StatelessWidget {
+  const _TimerBox();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: const Color(0xFFE5FF00),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: const Text(
+        '02:59:23',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class _ProductCard extends StatelessWidget {
+  final String image;
+  final String title;
+  final String subtitle;
+  final String price;
+  final String originalPrice;
+
+  const _ProductCard({
+    required this.image,
+    required this.title,
+    required this.subtitle,
+    required this.price,
+    required this.originalPrice,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                child: Image.asset(
+                  image,
+                  height: 150,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Positioned(
+                top: 8,
+                right: 8,
+                child: Icon(
+                  Icons.favorite_border,
+                  color: Colors.grey[600],
+                ),
+              ),
+            ],
           ),
-        );
-      },
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
                   style: const TextStyle(
-                    fontSize: 16,
                     fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
-                const SizedBox(height: 4),
                 Text(
-                  price,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
+                  subtitle,
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 12,
                   ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      originalPrice,
+                      style: TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.grey[600],
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            const Icon(Icons.arrow_forward_ios, size: 16),
-          ],
-        ),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class _BottomNavigationBarWidget extends StatelessWidget {
+  const _BottomNavigationBarWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+      currentIndex: 0,
+      items: [
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.category),
+          label: 'Catalog',
+        ),
+        BottomNavigationBarItem(
+          icon: Stack(
+            children: [
+              const Icon(Icons.shopping_cart),
+              Positioned(
+                right: 0,
+                top: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Text(
+                    '2',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          label: 'Cart',
+        ),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.favorite_border),
+          label: 'Favorites',
+        ),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline),
+          label: 'Profile',
+        ),
+      ],
     );
   }
 }
