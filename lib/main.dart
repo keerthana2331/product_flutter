@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'homescreen.dart';
+import 'package:shopping_app/cartscreen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const HomeScreen(),
+      home:  CartScreen(),
+      
     );
   }
 }
