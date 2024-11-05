@@ -1,13 +1,52 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
+import 'homescreen.dart';
 
-class CartScreen extends StatelessWidget {
-  const CartScreen({super.key});
+class CartScreen extends StatefulWidget {
+  final CartItem? initialItem;
+
+  const CartScreen({super.key, this.initialItem});
+
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  List<CartItem> cartItems = [];
+
+  @override
+  void initState() {
+    super.initState();
+    cartItems = [
+      CartItem(
+        title: 'Nintendo Switch Lite, Yellow',
+        price: 109.00,
+        imagePath: 'assets/switch_lite.png',
+      ),
+      CartItem(
+        title: 'The Legend of Zelda: Tears of the Kingdom',
+        price: 39.00,
+        imagePath: 'assets/zelda.png',
+      ),
+    ];
+
+    if (widget.initialItem != null) {
+      cartItems.add(widget.initialItem!);
+    }
+  }
+
+  double get totalPrice =>
+      cartItems.fold(0, (sum, item) => sum + (item.price * item.quantity));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cart'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         actions: const [
           Icon(Icons.more_horiz),
           SizedBox(width: 16),
@@ -15,63 +54,90 @@ class CartScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Delivery Address
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Icon(Icons.location_on_outlined),
-                    SizedBox(width: 8),
-                    Text('92 High Street, London'),
-                  ],
+          // Delivery Address with Navigation
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
                 ),
-                Icon(Icons.chevron_right),
-              ],
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.location_on_outlined),
+                      SizedBox(width: 8),
+                      Text('92 High Street, London'),
+                    ],
+                  ),
+                  Icon(Icons.chevron_right),
+                ],
+              ),
             ),
           ),
           const Divider(),
 
           // Cart Items
           Expanded(
-            child: ListView(
-              children: [
-                _buildCartItem(
-                  'Nintendo Switch Lite, Yellow',
-                  '£109.00',
-                  'assets/switch_lite.png',
-                ),
-                _buildCartItem(
-                  'The Legend of Zelda: Tears of the Kingdom',
-                  '£39.00',
-                  'assets/zelda.png',
-                ),
-              ],
+            child: ListView.builder(
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) {
+                final item = cartItems[index];
+                return _buildCartItem(item);
+              },
             ),
           ),
 
-          // Checkout Button
+          // Total and Checkout Button
           Padding(
             padding: const EdgeInsets.all(16),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFE2FF3F),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Total:',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '£${totalPrice.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-                child: const Text(
-                  'Checkout',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFE2FF3F),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    child: const Text(
+                      'Checkout',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ],
@@ -79,7 +145,7 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCartItem(String title, String price, String imagePath) {
+  Widget _buildCartItem(CartItem item) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Row(
@@ -94,6 +160,10 @@ class CartScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.grey[200],
               borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                image: AssetImage(item.imagePath),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           const SizedBox(width: 16),
@@ -102,7 +172,7 @@ class CartScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  item.title,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -110,7 +180,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  price,
+                  '£${item.price.toStringAsFixed(2)}',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -123,12 +193,22 @@ class CartScreen extends StatelessWidget {
             children: [
               IconButton(
                 icon: const Icon(Icons.remove),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    if (item.quantity > 1) {
+                      item.quantity--;
+                    }
+                  });
+                },
               ),
-              const Text('1'),
+              Text('${item.quantity}'),
               IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    item.quantity++;
+                  });
+                },
               ),
             ],
           ),
