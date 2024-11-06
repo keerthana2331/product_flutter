@@ -62,7 +62,7 @@ class ProductDetailScreen extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Container(
+                      SizedBox(
                         height: 300,
                         child: Image.asset(
                           'assets/switch.png',
