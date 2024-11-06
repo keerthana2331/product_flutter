@@ -16,17 +16,17 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header Section
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Colors.grey[100],
+                        color: const Color(0xFFCEF141),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Icon(Icons.menu, color: Colors.black, size: 20),
+                      child: const Icon(Icons.settings,
+                          color: Colors.white, size: 20),
                     ),
                     Column(
                       children: [
@@ -56,7 +56,8 @@ class HomeScreen extends StatelessWidget {
                             color: Colors.grey[50],
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.notifications_outlined, color: Colors.grey, size: 20),
+                          child: const Icon(Icons.notifications_outlined,
+                              color: Colors.grey, size: 20),
                         ),
                         Positioned(
                           right: 2,
@@ -75,10 +76,9 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 24),
-
-                // Search Bar
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
                     color: Colors.grey[100],
                     borderRadius: BorderRadius.circular(12),
@@ -102,11 +102,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-
-                // Delivery Banner
                 Container(
                   margin: const EdgeInsets.only(top: 16),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
                     color: const Color(0xFFE6F3FF),
                     borderRadius: BorderRadius.circular(12),
@@ -118,7 +117,8 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: 'Delivery is ',
-                              style: TextStyle(color: Colors.black87, fontSize: 14),
+                              style: TextStyle(
+                                  color: Colors.black87, fontSize: 14),
                             ),
                             TextSpan(
                               text: '50%',
@@ -131,7 +131,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                             TextSpan(
                               text: ' cheaper',
-                              style: TextStyle(color: Colors.black87, fontSize: 14),
+                              style: TextStyle(
+                                  color: Colors.black87, fontSize: 14),
                             ),
                           ],
                         ),
@@ -146,8 +147,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-
-                // Categories Section
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -178,8 +177,6 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-
-                // Categories List
                 SizedBox(
                   height: 110,
                   child: ListView(
@@ -194,8 +191,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-
-                // Flash Sale Section
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -248,8 +243,6 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-
-                // Flash Sale Products
                 Row(
                   children: [
                     Expanded(
@@ -376,92 +369,91 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget buildFlashSaleItem(
-  BuildContext context,
-  String title,
-  String price,
-  String originalPrice,
-  String imagePath,
-) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ProductDetailScreen()),
-      );
-    },
-    child: Container(
-      decoration: BoxDecoration(
-        // Removed the border
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 160,
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(16),
+    BuildContext context,
+    String title,
+    String price,
+    String originalPrice,
+    String imagePath,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ProductDetailScreen()),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 160,
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(16),
+                ),
+              ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(16),
+                ),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(16),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(16),
+                ),
               ),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(16),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Text(
-                      price,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(
+                        price,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      originalPrice,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[400],
-                        decoration: TextDecoration.lineThrough,
+                      const SizedBox(width: 8),
+                      Text(
+                        originalPrice,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey[400],
+                          decoration: TextDecoration.lineThrough,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }
