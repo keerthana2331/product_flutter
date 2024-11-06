@@ -8,177 +8,331 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.lime,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Icon(Icons.settings, color: Colors.white),
-                  ),
-                  const Column(
-                    children: [
-                      Text('Delivery address',
-                          style: TextStyle(color: Colors.grey, fontSize: 12)),
-                      Text('92 High Street, London',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                  const Icon(Icons.notifications_outlined),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Search the entire shop',
-                    icon: Icon(Icons.search),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.blue[50],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header Section
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Delivery is 50% cheaper',
-                        style: TextStyle(color: Colors.blue)),
-                    const Spacer(),
-                    Image.asset(
-                      'assets/first scre product.topfeather.png',
-                      width: 24,
-                      height: 24,
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFCEF141),
+                        shape: BoxShape.circle, // Changed to circular shape
+                      ),
+                      child: const Icon(Icons.settings_outlined, color: Colors.black, size: 20), // Changed to outlined icon and black color
+                    ),
+                    Column(
+                      children: [
+                        const Text(
+                          'Delivery address',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          '92 High Street, London',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[50],
+                            shape: BoxShape.circle, // Changed to circular shape
+                          ),
+                          child: const Icon(Icons.notifications_outlined, color: Colors.grey, size: 20),
+                        ),
+                        Positioned(
+                          right: 2,
+                          top: 2,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: const BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 16),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Categories',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  Text('See all', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-              const SizedBox(height: 16),
-              SizedBox(
-                height: 100,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    buildCategoryItem('Phones', 'assets/icon.phone.png'),
-                    buildCategoryItem('Consoles', 'assets/console.png'),
-                    buildCategoryItem('Laptops', 'assets/laptop.png'),
-                    buildCategoryItem('Cameras', 'assets/camera.png'),
-                    buildCategoryItem('Audio', 'assets/audio.png'),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+                const SizedBox(height: 24),
+
+                // Search Bar - Modified to center text
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
                     children: [
-                      Text('Flash Sale',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      SizedBox(width: 8),
-                      Text('02:59:23',
-                          style: TextStyle(
-                              backgroundColor: Colors.yellow,
-                              fontWeight: FontWeight.bold)),
+                      Icon(Icons.search, color: Colors.grey[400], size: 20),
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            'Search the entire shop',
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 20), // Added to balance the search icon
                     ],
                   ),
-                  Text('See all', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const ProductDetailScreen()),
-                        );
-                      },
+                ),
+                // Delivery Banner
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFE6F3FF),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      RichText(
+                        text: const TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Delivery is ',
+                              style: TextStyle(color: Colors.black87, fontSize: 14),
+                            ),
+                            TextSpan(
+                              text: '50%',
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                backgroundColor: Colors.white,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' cheaper',
+                              style: TextStyle(color: Colors.black87, fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                      Image.asset(
+                        'assets/first scre product.topfeather.png',
+                        width: 24,
+                        height: 24,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Categories Section
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Categories',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'See all',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        Icon(
+                          Icons.chevron_right,
+                          color: Colors.grey[600],
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+
+                // Categories List
+                SizedBox(
+                  height: 110,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      buildCategoryItem('Phones', 'assets/icon.phone.png'),
+                      buildCategoryItem('Consoles', 'assets/console.png'),
+                      buildCategoryItem('Laptops', 'assets/laptop.png'),
+                      buildCategoryItem('Cameras', 'assets/camera.png'),
+                      buildCategoryItem('Audio', 'assets/audio.png'),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Flash Sale Section
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          'Flash Sale',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFCEF141),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: const Text(
+                            '02:59:23',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'See all',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        Icon(
+                          Icons.chevron_right,
+                          color: Colors.grey[600],
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+
+                // Flash Sale Products
+                Row(
+                  children: [
+                    Expanded(
                       child: buildFlashSaleItem(
-                        'Apple iPhone 15 Pro',
+                        context,
+                        'Apple iPhone 15 Pro\n128GB Natural Titanium',
                         '£699.00',
                         '£739.00',
                         'assets/iphone.png',
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: buildFlashSaleItem(
-                      'Samsung Galaxy Buds Pro',
-                      '£69.00',
-                      '£85.00',
-                      'assets/galaxy_buds.png', // Add image asset
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: buildFlashSaleItem(
+                        context,
+                        'Samsung Galaxy Buds Pro\nTrue Wireless Black',
+                        '£69.00',
+                        '£85.00',
+                        'assets/galaxy_buds.png',
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Catalog'),
+        backgroundColor: Colors.white,
+        selectedItemColor: const Color(0xFFCEF141),
+        unselectedItemColor: Colors.grey,
+        selectedLabelStyle: const TextStyle(fontSize: 12),
+        unselectedLabelStyle: const TextStyle(fontSize: 12),
+        items: [
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.grid_view),
+            label: 'Catalog',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border), label: 'Favorites'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            icon: Stack(
+              children: [
+                const Icon(Icons.shopping_cart_outlined),
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Text(
+                      '2',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            label: 'Cart',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: 'Favorites',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'Profile',
+          ),
         ],
         currentIndex: 0,
-        selectedItemColor: Colors.lime,
         onTap: (index) {
-          switch (index) {
-            case 0:
-              break;
-            case 1:
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const CartScreen()),
-              );
-              break;
-            case 3:
-              break;
-            case 4:
-              break;
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CartScreen()),
+            );
           }
         },
       ),
@@ -192,10 +346,12 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            width: 64,
+            height: 64,
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(12),
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(16),
             ),
             child: Image.asset(
               imagePath,
@@ -204,65 +360,113 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          Text(title, style: const TextStyle(fontSize: 12)),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ],
       ),
     );
   }
 
   Widget buildFlashSaleItem(
-      String title, String price, String originalPrice, String imagePath) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            alignment: Alignment.topRight,
-            children: [
-              Container(
-                height: 120,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                    image: AssetImage(imagePath),
-                    fit: BoxFit.cover,
+    BuildContext context,
+    String title,
+    String price,
+    String originalPrice,
+    String imagePath,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ProductDetailScreen()),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey[200]!),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              alignment: Alignment.topRight,
+              children: [
+                Container(
+                  height: 160,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(16),
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage(imagePath),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.favorite_border),
-                onPressed: () {},
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(title,
-              style:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 4),
-          Row(
-            children: [
-              Text(price,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold)),
-              const SizedBox(width: 8),
-              Text(
-                originalPrice,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[500],
-                  decoration: TextDecoration.lineThrough,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.favorite_border,
+                      size: 20,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(
+                        price,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        originalPrice,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey[400],
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
