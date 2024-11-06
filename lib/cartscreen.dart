@@ -8,111 +8,297 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Cart',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  Icon(Icons.more_horiz),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.location_on, color: Colors.grey),
-                        SizedBox(width: 8),
-                        Text(
-                          '92 High Street, London',
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                      ],
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Container(
+                  height: 140,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24),
                     ),
-                    Icon(Icons.chevron_right, color: Colors.grey),
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+                const SizedBox(height: 20),
+                Container(
+                  height: MediaQuery.of(context).size.height - 220,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(24),
+                      topRight: Radius.circular(24),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
                     children: [
-                      Checkbox(value: true, onChanged: null),
-                      Text('Select all', style: TextStyle(color: Colors.black)),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Cart',
+                            style: TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'SF Pro Display',
+                            ),
+                          ),
+                          Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.more_horiz,
+                                color: Colors.black,
+                                size: 20,
+                              ),
+                              padding: EdgeInsets.zero,
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF5F5F5),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.location_on_outlined,
+                                  color: Color(0xFF757575),
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '92 High Street, London',
+                                  style: TextStyle(
+                                    color: Colors.grey[800],
+                                    fontSize: 15,
+                                    fontFamily: 'SF Pro Text',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Icon(
+                              Icons.chevron_right,
+                              color: Color(0xFF757575),
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                  Row(
+                ),
+                const SizedBox(height: 24),
+                Expanded(
+                  child: Column(
                     children: [
-                      Icon(Icons.share, color: Colors.grey),
-                      SizedBox(width: 16),
-                      Icon(Icons.delete, color: Colors.grey),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 24,
+                                  height: 24,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFB2EBB6),
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  child: const Icon(
+                                    Icons.check,
+                                    size: 18,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                const Text(
+                                  'Select all',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'SF Pro Text',
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.share_outlined,
+                                    color: Color(0xFF757575),
+                                    size: 22,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: const Icon(
+                                    Icons.edit_outlined,
+                                    color: Color(0xFF757575),
+                                    size: 22,
+                                  ),
+                                  onPressed: () {},
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: ListView(
+                            children: [
+                              const SizedBox(height: 16),
+                              buildCartItem(
+                                context,
+                                'Nintendo Switch Lite, Yellow',
+                                '£109.00',
+                                'assets/switch_lite.png',
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8.0),
+                                child: Divider(
+                                    height: 1, color: Color(0xFFE0E0E0)),
+                              ),
+                              buildCartItem(
+                                context,
+                                'The Legend of Zelda: Tears of the Kingdom',
+                                '£39.00',
+                                'assets/zelda.png',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              buildCartItem(
-                context,
-                'Nintendo Switch Lite, Yellow',
-                '£109.00',
-                'assets/switch_lite.png',
-              ),
-              const SizedBox(height: 16),
-              buildCartItem(
-                context,
-                'The Legend of Zelda: Tears of the Kingdom',
-                '£39.00',
-                'assets/zelda.png',
-              ),
-              const Spacer(),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lime,
-                  minimumSize: const Size(double.infinity, 48),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  color: Colors.white,
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFCCF235),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        'Checkout',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'SF Pro Text',
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                child: const Text(
-                  'Checkout',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Catalog'),
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey[600],
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        items: [
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Catalog',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border), label: 'Favorites'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            icon: Stack(
+              children: [
+                const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Color(0xFFCCF235),
+                ),
+                Positioned(
+                  right: 0,
+                  top: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    constraints: const BoxConstraints(
+                      minWidth: 16,
+                      minHeight: 16,
+                    ),
+                    child: const Text(
+                      '2',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            label: 'Cart',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            activeIcon: Icon(Icons.favorite),
+            label: 'Favorites',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            activeIcon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
         currentIndex: 2,
-        selectedItemColor: Colors.lime,
         onTap: (index) {
           switch (index) {
             case 0:
@@ -120,14 +306,6 @@ class CartScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => const HomeScreen()),
               );
-              break;
-            case 1:
-              break;
-            case 2:
-              break;
-            case 3:
-              break;
-            case 4:
               break;
           }
         },
@@ -143,32 +321,42 @@ class CartScreen extends StatelessWidget {
   ) {
     return GestureDetector(
       onTap: () {
-        NavigationService.navigateToProductDetail(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ProductDetailScreen()),
+        );
       },
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              blurRadius: 6,
-              offset: const Offset(0, 4),
-            ),
-          ],
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
           children: [
-            Checkbox(value: true, onChanged: (value) {}),
             Container(
-              width: 60,
-              height: 60,
+              width: 24,
+              height: 24,
               decoration: BoxDecoration(
+                color: const Color(0xFFB2EBB6),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: const Icon(
+                Icons.check,
+                size: 18,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Container(
+              width: 64,
+              height: 64,
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5F5F5),
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
                   image: AssetImage(imagePath),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
@@ -180,13 +368,19 @@ class CartScreen extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w500),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'SF Pro Text',
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     price,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black87),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'SF Pro Text',
+                    ),
                   ),
                 ],
               ),
@@ -194,15 +388,34 @@ class CartScreen extends StatelessWidget {
             Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.remove, color: Colors.grey),
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(
+                    minWidth: 28,
+                    minHeight: 28,
+                  ),
+                  icon: const Icon(Icons.remove, size: 18),
+                  color: Colors.grey[700],
                   onPressed: () {},
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: const Text('1', style: TextStyle(fontSize: 16)),
+                  child: const Text(
+                    '1',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'SF Pro Text',
+                    ),
+                  ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.add, color: Colors.grey),
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(
+                    minWidth: 28,
+                    minHeight: 28,
+                  ),
+                  icon: const Icon(Icons.add, size: 18),
+                  color: Colors.grey[700],
                   onPressed: () {},
                 ),
               ],
@@ -210,22 +423,6 @@ class CartScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class NavigationService {
-  static void navigateToProductDetail(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ProductDetailScreen()),
-    );
-  }
-
-  static void navigateToCart(BuildContext context) {
-    Navigator.pop(
-      context,
-      MaterialPageRoute(builder: (context) => const CartScreen()),
     );
   }
 }
