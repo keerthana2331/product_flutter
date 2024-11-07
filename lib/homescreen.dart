@@ -33,7 +33,8 @@ class HomeScreen extends StatelessWidget {
                         const Text(
                           'Delivery address',
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Color.fromARGB(255, 154, 146, 146),
+                            fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
                         ),
@@ -41,8 +42,8 @@ class HomeScreen extends StatelessWidget {
                         Text(
                           '92 High Street, London',
                           style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
                             color: Colors.grey[800],
                           ),
                         ),
@@ -51,13 +52,13 @@ class HomeScreen extends StatelessWidget {
                     Stack(
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[50],
+                          padding: const EdgeInsets.all(12),
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 236, 233, 233),
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(Icons.notifications_outlined,
-                              color: Colors.grey, size: 20),
+                              color: Colors.black, size: 20),
                         ),
                         Positioned(
                           right: 2,
@@ -66,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                             width: 8,
                             height: 8,
                             decoration: const BoxDecoration(
-                              color: Colors.blue,
+                              color: Color.fromARGB(255, 178, 237, 180),
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -86,13 +87,14 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(Icons.search, color: Colors.grey[400], size: 20),
-                      Expanded(
+                      const Expanded(
                         child: Center(
                           child: Text(
                             'Search the entire shop',
                             style: TextStyle(
-                              color: Colors.grey[400],
-                              fontSize: 14,
+                              color: Color.fromARGB(255, 166, 163, 163),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
                             ),
                           ),
                         ),
@@ -103,45 +105,61 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 Container(
-                  margin: const EdgeInsets.only(top: 16),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  margin: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  height: 33,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFE6F3FF),
+                    color: const Color.fromARGB(255, 212, 232, 243),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Row(
+                  child: Stack(
+                    clipBehavior: Clip.none,
                     children: [
-                      RichText(
-                        text: const TextSpan(
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Row(
                           children: [
-                            TextSpan(
-                              text: 'Delivery is ',
-                              style: TextStyle(
-                                  color: Colors.black87, fontSize: 14),
-                            ),
-                            TextSpan(
-                              text: '50%',
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                backgroundColor: Colors.white,
+                            RichText(
+                              text: const TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Delivery is ',
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '50%',
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      backgroundColor: Colors.white,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: ' cheaper',
+                                    style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
                               ),
                             ),
-                            TextSpan(
-                              text: ' cheaper',
-                              style: TextStyle(
-                                  color: Colors.black87, fontSize: 14),
-                            ),
+                            const Spacer(),
                           ],
                         ),
                       ),
-                      const Spacer(),
-                      Image.asset(
-                        'assets/feather2.png',
-                        width: 24,
-                        height: 24,
+                      Positioned(
+                        right: 0,
+                        top: -30,
+                        child: Image.asset(
+                          'assets/feather3.png',
+                          height: 60,
+                        ),
                       ),
                     ],
                   ),
