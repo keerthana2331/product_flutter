@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Shopping App',
       theme: ThemeData(
         primarySwatch: Colors.lime,
+        fontFamily: 'Roboto',
       ),
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(),

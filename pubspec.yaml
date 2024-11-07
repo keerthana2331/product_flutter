@@ -31,3 +31,10 @@ flutter:
     - assets/icon.phone.png
     - assets/laptop.png
     - assets/feather3.png
+
+  
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: asset/fonts/Roboto-Bold.ttf
+         

@@ -24,7 +24,7 @@ class CartScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 8),
                 Container(
                   height: MediaQuery.of(context).size.height - 220,
                   decoration: const BoxDecoration(
@@ -51,17 +51,17 @@ class CartScreen extends StatelessWidget {
                           const Text(
                             'Cart',
                             style: TextStyle(
-                              fontSize: 32,
+                              fontSize: 25,
                               fontWeight: FontWeight.w700,
-                              fontFamily: 'SF Pro Display',
+                              fontFamily: 'Roboto',
                             ),
                           ),
                           Container(
-                            width: 32,
-                            height: 32,
+                            width: 50,
+                            height: 50,
                             decoration: BoxDecoration(
                               color: Colors.grey[200],
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(40),
                             ),
                             child: IconButton(
                               icon: const Icon(
@@ -98,8 +98,9 @@ class CartScreen extends StatelessWidget {
                                   '92 High Street, London',
                                   style: TextStyle(
                                     color: Colors.grey[800],
-                                    fontSize: 15,
-                                    fontFamily: 'SF Pro Text',
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Roboto',
                                   ),
                                 ),
                               ],
@@ -107,7 +108,7 @@ class CartScreen extends StatelessWidget {
                             const Icon(
                               Icons.chevron_right,
                               color: Color(0xFF757575),
-                              size: 20,
+                              size: 30,
                             ),
                           ],
                         ),
@@ -130,7 +131,8 @@ class CartScreen extends StatelessWidget {
                                   width: 24,
                                   height: 24,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFB2EBB6),
+                                    color: const Color.fromARGB(
+                                        255, 145, 209, 207),
                                     borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: const Icon(
@@ -143,8 +145,9 @@ class CartScreen extends StatelessWidget {
                                 const Text(
                                   'Select all',
                                   style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: 'SF Pro Text',
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Roboto',
                                     color: Colors.black,
                                   ),
                                 ),
@@ -154,7 +157,7 @@ class CartScreen extends StatelessWidget {
                               children: [
                                 IconButton(
                                   icon: const Icon(
-                                    Icons.share_outlined,
+                                    Icons.upload,
                                     color: Color(0xFF757575),
                                     size: 22,
                                   ),
@@ -186,13 +189,17 @@ class CartScreen extends StatelessWidget {
                                 'assets/switch_lite.png',
                               ),
                               const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 8.0),
+                                padding: EdgeInsets.only(
+                                  top: 8.0,
+                                  bottom: 8.0,
+                                  left: 32,
+                                ),
                                 child: Divider(
-                                    height: 1, color: Color(0xFFE0E0E0)),
+                                    height: 0, color: Color(0xFFE0E0E0)),
                               ),
                               buildCartItem(
                                 context,
-                                'The Legend of Zelda: Tears of the Kingdom',
+                                'Zelda: Tears of the Kingdom (Nintendo Switch)',
                                 '£39.00',
                                 'assets/zelda.png',
                               ),
@@ -212,7 +219,7 @@ class CartScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFCCF235),
+                        backgroundColor: const Color.fromARGB(255, 188, 233, 8),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
                         ),
@@ -276,7 +283,7 @@ class CartScreen extends StatelessWidget {
                       '2',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 10,
+                        fontSize: 8,
                         fontWeight: FontWeight.bold,
                       ),
                       textAlign: TextAlign.center,
@@ -338,7 +345,7 @@ class CartScreen extends StatelessWidget {
               width: 24,
               height: 24,
               decoration: BoxDecoration(
-                color: const Color(0xFFB2EBB6),
+                color: const Color.fromARGB(255, 145, 209, 207),
                 borderRadius: BorderRadius.circular(6),
               ),
               child: const Icon(
@@ -387,19 +394,23 @@ class CartScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(
-                    minWidth: 28,
-                    minHeight: 28,
-                  ),
-                  icon: const Icon(Icons.remove, size: 18),
-                  color: Colors.grey[700],
-                  onPressed: () {},
-                ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: const Text(
+                  width: 28,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.remove, size: 18),
+                    color: Colors.black,
+                    onPressed: () {},
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
                     '1',
                     style: TextStyle(
                       fontSize: 15,
@@ -408,15 +419,19 @@ class CartScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(
-                    minWidth: 28,
-                    minHeight: 28,
+                Container(
+                  width: 28,
+                  height: 28,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(14),
                   ),
-                  icon: const Icon(Icons.add, size: 18),
-                  color: Colors.grey[700],
-                  onPressed: () {},
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.add, size: 18),
+                    color: Colors.black,
+                    onPressed: () {},
+                  ),
                 ),
               ],
             ),
