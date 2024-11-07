@@ -22,8 +22,8 @@ class HomeScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFCEF141),
-                        borderRadius: BorderRadius.circular(12),
+                        color: const Color.fromARGB(255, 185, 225, 26),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       child: const Icon(Icons.settings,
                           color: Colors.white, size: 20),
@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                           '92 High Street, London',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 16,
                             color: Colors.grey[800],
                           ),
                         ),
@@ -58,14 +58,14 @@ class HomeScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(Icons.notifications_outlined,
-                              color: Colors.black, size: 20),
+                              color: Colors.black, size: 25),
                         ),
                         Positioned(
                           right: 2,
                           top: 2,
                           child: Container(
-                            width: 8,
-                            height: 8,
+                            width: 15,
+                            height: 15,
                             decoration: const BoxDecoration(
                               color: Color.fromARGB(255, 178, 237, 180),
                               shape: BoxShape.circle,
@@ -76,13 +76,13 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
                 Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   decoration: BoxDecoration(
                     color: Colors.grey[100],
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   child: Row(
                     children: [
@@ -103,20 +103,20 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
                 Container(
                   margin: const EdgeInsets.only(top: 10),
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  height: 33,
+                  height: 47,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 212, 232, 243),
-                    borderRadius: BorderRadius.circular(12),
+                    color: const Color.fromARGB(255, 147, 220, 219),
+                    borderRadius: BorderRadius.circular(13),
                   ),
                   child: Stack(
                     clipBehavior: Clip.none,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 8),
+                        padding: const EdgeInsets.only(top: 15),
                         child: Row(
                           children: [
                             RichText(
@@ -154,8 +154,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        right: 0,
-                        top: -30,
+                        right: 10,
+                        top: -15,
                         child: Image.asset(
                           'assets/feather3.png',
                           height: 60,
@@ -177,18 +177,25 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           'See all',
                           style: TextStyle(
-                            color: Colors.grey[600],
+                            color: Color.fromARGB(255, 201, 196, 196),
                             fontSize: 14,
                           ),
                         ),
                         const SizedBox(width: 4),
-                        Icon(
-                          Icons.chevron_right,
-                          color: Colors.grey[600],
-                          size: 20,
+                        Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: const EdgeInsets.all(4),
+                          child: const Icon(
+                            Icons.chevron_right,
+                            color: Colors.white,
+                            size: 20,
+                          ),
                         ),
                       ],
                     ),
@@ -229,7 +236,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: const Color(0xFFCEF141),
-                            borderRadius: BorderRadius.circular(4),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                           child: const Text(
                             '02:59:23',
@@ -251,10 +258,17 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 4),
-                        Icon(
-                          Icons.chevron_right,
-                          color: Colors.grey[600],
-                          size: 20,
+                        Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                          ),
+                          padding: const EdgeInsets.all(4),
+                          child: const Icon(
+                            Icons.chevron_right,
+                            color: Colors.white,
+                            size: 20,
+                          ),
                         ),
                       ],
                     ),
@@ -292,7 +306,7 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: const Color(0xFFCEF141),
+        selectedItemColor: const Color.fromARGB(255, 188, 222, 51),
         unselectedItemColor: Colors.grey,
         selectedLabelStyle: const TextStyle(fontSize: 12),
         unselectedLabelStyle: const TextStyle(fontSize: 12),
@@ -302,7 +316,7 @@ class HomeScreen extends StatelessWidget {
             label: 'Home',
           ),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.grid_view),
+            icon: Icon(Icons.search),
             label: 'Catalog',
           ),
           BottomNavigationBarItem(
